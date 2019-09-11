@@ -129,6 +129,6 @@ public class CRUD {
         System.out.println("1<- actualizar el Titulo");
         System.out.println("2<- actualizar el Autor");
         System.out.println("3<- actualizar el Numero Paginas");
-        System.out.println("4<- actualizar la Fecha Publicacion");
+        System.out.println("4<- actualizar la Fecha Publicacion\n");
     }
 }
