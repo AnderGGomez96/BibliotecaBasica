@@ -64,6 +64,6 @@ public class Libro {
         System.out.println("Autor: "+autor);
         System.out.println("isbn: "+isbn);
         System.out.println("Numero paginas: "+ numeroPaginas);
-        System.out.println("Fecha publicacion: "+ fechaPublicacion);
+        System.out.println("Fecha publicacion: "+ fechaPublicacion+"\n");
     }
 }
