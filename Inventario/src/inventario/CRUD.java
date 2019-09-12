@@ -51,55 +51,73 @@ public class CRUD {
         }else
         {
             int opcion;
-            menuLibro();
-            opcion=entradaInt.nextInt();
-            switch(opcion)
+            do
             {
-                case 1:
-                    actualizarTitulo(libroEncontrado, entradaInt, entradaStr);
-                    break;
-                case 2:
-                    actualizarAutor(libroEncontrado, entradaInt,  entradaStr);
-                    break;
-                case 3:
-                    actualizarNumeroPaginas(libroEncontrado, entradaInt,  entradaStr);
-                    break;
-                case 4:
-                    actualizarFecha(libroEncontrado, entradaInt,  entradaStr);
-                    break;
-            }
+                menuLibro();
+                opcion=entradaInt.nextInt();
+                switch(opcion)
+                {
+                    case 1:
+                        actualizarTitulo(libroEncontrado, entradaInt, entradaStr);
+                        break;
+                    case 2:
+                        actualizarAutor(libroEncontrado, entradaInt,  entradaStr);
+                        break;
+                    case 3:
+                        actualizarNumeroPaginas(libroEncontrado, entradaInt,  entradaStr);
+                        break;
+                    case 4:
+                        actualizarFecha(libroEncontrado, entradaInt,  entradaStr);
+                        break;
+                }
+            }while(opcion != 5);
         }
     }
     
     public static void deleteLibros (ArrayList<Libro> libros, Scanner entradaInt, Scanner entradaStr)
     {
         Libro libroEncontrado=buscarTitulo(libros, entradaInt, entradaStr);
-        if (libros.remove(libroEncontrado))
+        if (libroEncontrado == null)
         {
-            System.out.println("Eliminacion completada con exito.");
+            System.out.println("El libro no existe");
         }else
         {
-            System.out.println("Eliminacion NO completada con exito.");
-        }
-        
+            if (libros.remove(libroEncontrado))
+            {
+                System.out.println("Eliminacion completada con exito.");
+            }else
+            {
+                System.out.println("Eliminacion NO completada con exito.");
+            }
+        }  
     }
     
     
     public static Libro buscarTitulo(ArrayList<Libro> libros, Scanner entradaInt, Scanner entradaStr)
     {
-        int indice=0;
-        System.out.println("Digite el Titulo del libro");
-        String titulo=entradaStr.nextLine();
-        while(!libros.get(indice).getTitulo().equals(titulo) && (indice < libros.size()))
+        
+        if(libros.isEmpty())
         {
-            indice++;
-        }
-        if (indice == libros.size())
-        {
+            System.out.println("No hay libros añadidos");
             return null;
-        }else
+        }
+        else
         {
-            return libros.get(indice);
+            int indice=0;
+            System.out.println("Digite el Titulo del libro");
+            String titulo=entradaStr.nextLine();
+            
+            while( (indice < libros.size()) && (!libros.get(indice).getTitulo().equals(titulo)))
+            {
+                indice++;
+            }
+            if (indice != libros.size())
+            {           
+                return libros.get(indice);
+            }else
+            {
+                return null;
+            }
         }
     }
 
@@ -130,5 +148,6 @@ public class CRUD {
         System.out.println("2<- actualizar el Autor");
         System.out.println("3<- actualizar el Numero Paginas");
         System.out.println("4<- actualizar la Fecha Publicacion");
+        System.out.println("5<- salir del menu");
     }
 }
