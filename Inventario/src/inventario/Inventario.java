@@ -1,4 +1,3 @@
-
 package inventario;
 
 import java.util.Scanner;
